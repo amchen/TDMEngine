@@ -1,0 +1,118 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TDMEngine" GeneratedClassName="TDMEngineSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TDMFailureMsg" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Migration failed, view the log for detailed information.\n\nThe log file for the Restore may be viewed by going into Batch Manager and clicking on the failed job in the top grid. Then go to the bottom grid and click on the job step with the Status = ""F"". Right click and select View Log on the pop-up menu. Search the log for the word ""Error"" to locate the reason why the restore failed.</Value>
+    </Setting>
+    <Setting Name="CheckDate" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="A_SQL_GetDestBuilds" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">select * from TDMCTRL where DESTBUILD &gt; '{0}' and DESTBUILD&lt;='{1}' order by KEY</Value>
+    </Setting>
+    <Setting Name="StringToReplace" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@(#)</Value>
+    </Setting>
+    <Setting Name="A_SQL_GetMigrStepCount" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">select count(*) as CNT from {0}</Value>
+    </Setting>
+    <Setting Name="A_SQL_GetTDMTableData" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">select A.KEY,{1} SEQ,DEFECT,REM_SQL,TNAME,CMD_SQL,DEPEND,NOTES,A.TYPE,DESCR 
+ from {0} a, TDMTYPE b where a.type=b.type order by  A.KEY
+</Value>
+    </Setting>
+    <Setting Name="SQL_DropTable" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">if exists (select 1 from SYS.TABLES where NAME = '{0}') drop table {0}</Value>
+    </Setting>
+    <Setting Name="SQL_AlterTable" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">if exists (select 1 from SYS.TABLES where NAME = '{0}')  alter table {0} {1};</Value>
+    </Setting>
+    <Setting Name="CreateTableScript_ProcName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">absp_Util_CreateTableScript</Value>
+    </Setting>
+    <Setting Name="SQL_DropIndex" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">if exists (select 1 from SYS.INDEXES where OBJECT_ID = OBJECT_ID('{0}') and NAME = '{1}') drop index {0}.{1};</Value>
+    </Setting>
+    <Setting Name="SQL_DropProc" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">if exists (select 1 from sysobjects where name = '{0}' and type = 'P')  drop procedure {0}</Value>
+    </Setting>
+    <Setting Name="SQL_DBMsg" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">if exists ( select 1 from SYSOBJECTS where NAME = 'absp_MessageEx' and type = 'P' )    exec absp_MessageEx '{0}' </Value>
+    </Setting>
+    <Setting Name="SQL_SetDBVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">if exists ( select 1 from SYSOBJECTS where NAME = 'absp_Util_SetDBVersion' and type = 'P' ) 
+begin
+  exec absp_Util_SetDBVersion '{0}','{1}','{2}','{3}','{4}','{5}','{6}'
+end </Value>
+    </Setting>
+    <Setting Name="SQL_GetDBVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)"> if exists ( select 1 from SYSOBJECTS where NAME = 'absp_Util_GetDBVersion' and type = 'P' ) 
+ begin   
+ exec absp_Util_GetDBVersion 
+ end</Value>
+    </Setting>
+    <Setting Name="TDMFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tdm.accdb</Value>
+    </Setting>
+    <Setting Name="SQL_GetAllTableNames" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">select distinct TABLENAME, {0} from EqecatSystem..DICTTBL where LOCATION in ('B','S')  and 
+{0} in ('Y','L')</Value>
+    </Setting>
+    <Setting Name="StoredProcPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ZZPROCS_MSSQL</Value>
+    </Setting>
+    <Setting Name="SQL_Migr_ReloadTable_PROC" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">if exists ( select 1 from SYSOBJECTS where NAME = 'absp_Migr_ReloadTableEx' and type = 'P' )
+begin
+    exec absp_Migr_ReloadTableEx '{0}','{1}','','{2}','{3}'
+end</Value>
+    </Setting>
+    <Setting Name="SQL_CheckIfTableExists" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">select 1 from SYS.TABLES where NAME = '{0}'</Value>
+    </Setting>
+    <Setting Name="SQL_SetDBModeReadOnly" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">if exists(select 1 from sys.databases where name = '{0}' )
+begin
+USE master;
+ALTER DATABASE {0} SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+ALTER DATABASE {0} SET {1} ;ALTER DATABASE {0} SET MULTI_USER;
+end;
+</Value>
+    </Setting>
+    <Setting Name="DataDictFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DataDict.xlsx</Value>
+    </Setting>
+    <Setting Name="BCP_APP_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bcp.exe</Value>
+    </Setting>
+    <Setting Name="DelimitersUsed" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;|&lt;/string&gt;
+  &lt;string&gt;,&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="MinCountForDelimiters" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="SQL_GetTableGroup" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select TableType from eqecatSystem..DICTTBL where TableName='{0}'</Value>
+    </Setting>
+    <Setting Name="CreateTablePrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SET ANSI_PADDING OFF;SET ANSI_NULL_DFLT_ON ON;SET ANSI_NULLS ON;</Value>
+    </Setting>
+    <Setting Name="TDM_MsgLogFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tdm_msg.log</Value>
+    </Setting>
+    <Setting Name="SQL_GetEnvironmentVar_PROC" Type="System.String" Scope="User">
+      <Value Profile="(Default)">absp_Util_GetEnvironmentVariable</Value>
+    </Setting>
+    <Setting Name="TDM_UnloadPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\TDM_UnloadPath</Value>
+    </Setting>
+    <Setting Name="SQL_GetSystemLookup" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select TableName, CloneName from dictClon where Sys_DB='L'</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
