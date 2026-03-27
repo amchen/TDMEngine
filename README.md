@@ -1,4 +1,4 @@
-# TDM Engine - Table Driven Migration Engine
+# TDM Engine - Table Driven Database Migration Engine
 
 ## What is it?
 
